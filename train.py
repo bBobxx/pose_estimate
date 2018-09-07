@@ -30,6 +30,7 @@ def prm(input_fm, is_train, f_i=3, f_o=3):
     ratio2, _, _ = tf.nn.fractional_max_pool(share_input, [1.0, 1.414, 1.414, 1.0])
     ratio3, _, _ = tf.nn.fractional_max_pool(share_input, [1.0, 1.681, 1.681, 1.0])
     ratio4, _, _ = tf.nn.fractional_max_pool(share_input, [1.0, 2.000, 2.000, 1.0])
+    print(ratio1, ratio2, ratio3, ratio4)
     #todo add share
     global share_count
     conv_share0 = conv_bn_layer(ratio0, 28, 3, 1, is_train, name='conv_share_'+str(share_count))
