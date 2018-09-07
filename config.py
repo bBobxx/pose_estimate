@@ -54,7 +54,7 @@ class Config:
     init_model = osp.join(root_dir, 'inpu', 'imagenet_weights', 'res50.ckpt')
 
     nr_skeleton = 17
-    img_path = os.path.join(root_dir, 'input', 'coco_train', 'MSCOCO', 'images')
+    img_path = os.path.join(root_dir, 'input', 'coco-train-2017')
     symmetry = [(1, 2), (3, 4), (5, 6), (7, 8), (9, 10), (11, 12), (13, 14), (15, 16)]
 
     imgExtXBorder = 0.1
