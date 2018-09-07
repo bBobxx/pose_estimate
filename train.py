@@ -30,14 +30,13 @@ def prm(input_fm, is_train, f_i=3, f_o=3):
     ratio2, _, _ = tf.nn.fractional_max_pool(share_input, [1.0, 1.414, 1.414, 1.0])
     ratio3, _, _ = tf.nn.fractional_max_pool(share_input, [1.0, 1.681, 1.681, 1.0])
     ratio4, _, _ = tf.nn.fractional_max_pool(share_input, [1.0, 2.000, 2.000, 1.0])
-    print(ratio1, ratio2, ratio3, ratio4)
     #todo add share
     global share_count
-    conv_share0 = conv_bn_layer(ratio0, 28, 3, 1, is_train, name='conv_share_'+str(share_count))
-    conv_share1 = conv_bn_layer(ratio1, 28, 3, 1, is_train, reuse=True, name='conv_share_'+str(share_count))
-    conv_share2 = conv_bn_layer(ratio2, 28, 3, 1, is_train, reuse=True, name='conv_share_'+str(share_count))
-    conv_share3 = conv_bn_layer(ratio3, 28, 3, 1, is_train, reuse=True, name='conv_share_'+str(share_count))
-    conv_share4 = conv_bn_layer(ratio4, 28, 3, 1, is_train, reuse=True, name='conv_share_'+str(share_count))
+    conv_share0 = conv_bn_layer(ratio0, 28, 3, 0, is_train, name='conv_share_'+str(share_count))
+    conv_share1 = conv_bn_layer(ratio1, 28, 3, 0, is_train, reuse=True, name='conv_share_'+str(share_count))
+    conv_share2 = conv_bn_layer(ratio2, 28, 3, 0, is_train, reuse=True, name='conv_share_'+str(share_count))
+    conv_share3 = conv_bn_layer(ratio3, 28, 3, 0, is_train, reuse=True, name='conv_share_'+str(share_count))
+    conv_share4 = conv_bn_layer(ratio4, 28, 3, 0, is_train, reuse=True, name='conv_share_'+str(share_count))
     share_count += 1
     upsample1 = tf.image.resize_bilinear(conv_share1, out_sz)
     upsample2 = tf.image.resize_bilinear(conv_share2, out_sz)
