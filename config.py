@@ -25,7 +25,7 @@ class Config:
     epoch_size = 60000 
     optimizer = 'adam'
 
-    batch_size = 2 
+    batch_size = 1 
     weight_decay = 1e-5
 
     step_size = epoch_size * lr_dec_epoch
