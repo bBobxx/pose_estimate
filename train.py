@@ -64,7 +64,7 @@ def hourglass(input_fm, is_train):
         if last_fm is not None:
             sz = bridge.shape
             upsample = prm(last_fm, is_train, 6, 3)
-            upsample = tf.image.resize_bilinear(upsample, (sz[-2], sz[-1]))
+            upsample = tf.image.resize_bilinear(upsample, (sz[-3], sz[-2]))
             last_fm = bridge+upsample
         else:
             last_fm = bridge
