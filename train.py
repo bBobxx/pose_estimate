@@ -8,7 +8,7 @@ share_count = 0
 def conv_bn_layer(input_fm, filters, kernel_size, stride, training, padding=1,sdd = None, reuse=False, name=None):
     conv = tf.layers.conv2d(
         inputs=input_fm, filters=filters, kernel_size=kernel_size, strides=stride,
-        padding=('SAME' if stride == 1 else 'VALID'), use_bias=False,
+        padding='SAME', use_bias=False,
         kernel_initializer=tf.random_normal_initializer(stddev=sdd) if sdd is not None else
         tf.variance_scaling_initializer(scale=4.0, mode='fan_avg'), reuse=reuse, name=name)
     bn = tf.layers.batch_normalization(inputs=conv, training=training, fused=True, reuse=reuse, name='bn'+name if name is not None else None)
