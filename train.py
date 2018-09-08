@@ -23,7 +23,7 @@ def compute_standard_deviation(c_i, c_o, n_i, n_o):
 
 def prm(input_fm, is_train, f_i=3, f_o=3):
     share_input = conv_bn_layer(input_fm, 28, 1, 1, is_train, sdd=compute_standard_deviation(f_i, 4, 256, 3*28))
-    sz = tf.shape(share_input)
+    sz = share_input.shape
     out_sz = (sz[1], sz[2])
     ratio0 = conv_bn_layer(input_fm, 28, 1, 1, is_train, compute_standard_deviation(f_i, 4, 256, 3*28))
     ratio1, _, _ = tf.nn.fractional_max_pool(share_input, [1.0, 1.189, 1.189, 1.0])
