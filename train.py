@@ -124,8 +124,8 @@ def train():
     is_train = tf.placeholder(tf.bool)
     stack_out = stack_hourglass(image, is_train)
     global_loss = 0.
-    for i, (global_out, label) in enumerate(zip(stack_out, labels)):
-        global_label = label * tf.to_float(tf.greater(tf.reshape(valids, (-1, 1, 1, cfg.nr_skeleton)), 1.1))
+    for i, global_out in enumerate(stack_out):
+        global_label = labels * tf.to_float(tf.greater(tf.reshape(valids, (-1, 1, 1, cfg.nr_skeleton)), 1.1))
         global_loss += tf.reduce_mean(tf.square(global_out - global_label))
     global_loss /= 2.
     update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
