@@ -100,6 +100,7 @@ def make_data():
     dp = BatchData(dp, cfg.batch_size, use_list=True)
     dp.reset_state()
     dataiter = dp.get_data()
+    return dataiter
 
 def train():
     image = tf.placeholder(tf.float32, shape=[None, *cfg.data_shape, 3])
