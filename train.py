@@ -103,7 +103,7 @@ def make_data():
     return dataiter
 
 def train():
-    image = tf.placeholder(tf.float32, shape=[None, *cfg.data_shape, 3])
+    '''image = tf.placeholder(tf.float32, shape=[None, *cfg.data_shape, 3])
     labels = tf.placeholder(tf.float32, shape=[None, *cfg.output_shape, cfg.nr_skeleton])
     valids = tf.placeholder(tf.float32, shape=[None, cfg.nr_skeleton])
     is_train = tf.placeholder(tf.bool)
@@ -123,10 +123,10 @@ def train():
     config.gpu_options.allow_growth = True
     with tf.Session(config=config) as sess:
         init = tf.initialize_all_variables()
-        sess.run(init)
-        for data in make_data():
+        sess.run(init)'''
+    for data in make_data():
             #loss,_ = sess.run([global_loss, train_step], feed_dict={image:data[0], labels:data[1], valids:data[2], is_train:True})
-            print('loss is {}'.format(data))
+        print('loss is {}'.format(data))
 
 if __name__ == '__main__':
     train()
