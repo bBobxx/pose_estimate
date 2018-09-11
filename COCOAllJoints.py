@@ -23,7 +23,7 @@ class COCOJoints(object):
         self.test_mpi = []
         for mpi, stage in zip([self.mpi, self.test_mpi], ['train', 'val']):
             if stage == 'train':
-                self._train_gt_path=os.path.join(cur_dir, '..', 'input', 'coco-train-val2017', 'person_keypoints_trainvalminusminival2014.json')
+                self._train_gt_path=os.path.join(cur_dir, '..', '..','input', 'coco-train-val2017', 'person_keypoints_trainvalminusminival2014.json')
                 coco = COCO(self._train_gt_path)
             else:
                 self._val_gt_path=os.path.join(cur_dir,'..', 'input', 'coco-train-val2017', 'person_keypoints_minival2014.json')
