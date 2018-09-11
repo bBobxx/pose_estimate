@@ -125,8 +125,8 @@ def train():
         init = tf.initialize_all_variables()
         sess.run(init)
         for data in make_data():
-            loss,_ = sess.run([global_loss, train_step], feed_dict={image:data[0], labels:data[1], valids:data[2], is_train:True})
-            print('loss is {}'.format(loss))
+            #loss,_ = sess.run([global_loss, train_step], feed_dict={image:data[0], labels:data[1], valids:data[2], is_train:True})
+            print('loss is {}'.format(data))
 
 if __name__ == '__main__':
     train()
