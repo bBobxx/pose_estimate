@@ -92,30 +92,14 @@ def stack_hourglass(input_im, is_train):
 def make_data():
     from COCOAllJoints import COCOJoints
     from dataset import Preprocessing
-    def make_generator():
-        d = COCOJoints()
-        train_data, _ = d.load_data(1)
-        for data in train_data:
-            data_train = Preprocessing(data)
-            for i in range(4):
-                yield [data_train[j][i] for j in range(3)]
-    a = make_generator()
-    while True:
-        image = []
-        heatmap = []
-        valid = []
-        for i in range(cfg.batch_size):
-            try:
-                 b=next(a)
-            except:
-                yield [image, heatmap, valid]
-                break
-            else:
-                image.append(b[0])
-                heatmap.append(b[1])
-                valid.append(b[2])
-        yield [image, heatmap, valid]
-
+    d = COCOJoints()
+    train_data, _ = d.load_data(1)
+    from tensorpack.dataflow import *
+    dp = DataFromList(train_data)
+    dp = MapData(dp, Preprocessing)
+    dp = BatchData(dp, cfg.batch_size, use_list=True)
+    dp.reset_state()
+    dataiter = dp.get_data()
 
 def train():
     image = tf.placeholder(tf.float32, shape=[None, *cfg.data_shape, 3])
