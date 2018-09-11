@@ -26,7 +26,7 @@ class COCOJoints(object):
                 self._train_gt_path=os.path.join(cur_dir, '..', '..','input', 'coco-train-val2017', 'person_keypoints_trainvalminusminival2014.json')
                 coco = COCO(self._train_gt_path)
             else:
-                self._val_gt_path=os.path.join(cur_dir,'..', 'input', 'coco-train-val2017', 'person_keypoints_minival2014.json')
+                self._val_gt_path=os.path.join(cur_dir,'..', '..','input', 'coco-train-val2017', 'person_keypoints_minival2014.json')
                 coco = COCO(self._val_gt_path)
             if stage == 'train':
                 for aid in coco.anns.keys():
