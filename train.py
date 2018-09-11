@@ -94,7 +94,7 @@ def make_data():
     from dataset import Preprocessing
     d = COCOJoints()
     train_data, _ = d.load_data(1)
-    from tensorpack.dataflow import *
+    from tensorpack.dataflow import DataFromList, MapData, BatchData
     dp = DataFromList(train_data)
     dp = MapData(dp, Preprocessing)
     dp = BatchData(dp, cfg.batch_size, use_list=True)
