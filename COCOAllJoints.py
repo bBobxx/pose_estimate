@@ -42,13 +42,13 @@ class COCOJoints(object):
                     bbox = ann['bbox']
                     if np.sum(joints[2::3]) == 0 or ann['num_keypoints'] == 0 :
                         continue
-                    imgname = prefix + '2014/' + 'COCO_' + prefix + '2014' + '_' + str(ann['image_id']).zfill(12) + '.jpg'
+                    imgname = prefix + '2014/'+prefix + '2014/' + 'COCO_' + prefix + '2014' + '_' + str(ann['image_id']).zfill(12) + '.jpg'
                     humanData = dict(aid = aid,joints=joints, imgpath=imgname, headRect=rect, bbox=bbox, imgid = ann['image_id'], segmentation = ann['segmentation'])
                     mpi.append(humanData)
             elif stage == 'val':
                 files = [(img_id,coco.imgs[img_id]) for img_id in coco.imgs]
                 for img_id, img_info in files:
-                    imgname = stage + '2014/' + img_info['file_name']
+                    imgname = stage + '2014/' +stage + '2014/' + img_info['file_name']
                     humanData = dict(imgid = img_id,imgpath = imgname)
                     mpi.append(humanData)
             else:
